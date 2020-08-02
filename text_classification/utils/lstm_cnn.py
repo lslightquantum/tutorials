@@ -190,7 +190,7 @@ def train(model, criterion, accuracy, optimizer, data_loader):
     model.train()
     train_loss, train_acc = float('inf'), 0.
     losses, accuracies = [], []
-    tqdm_iterator = tqdm(enumerate(data_loader), total=len(data_loader), leave=False)
+    tqdm_iterator = tqdm(enumerate(data_loader), total=len(data_loader), leave=False, disable=True)
     summary_every = len(data_loader)//10
     for i, data in tqdm_iterator:
         inputs = data['inputs'].cuda()
@@ -217,7 +217,7 @@ def train(model, criterion, accuracy, optimizer, data_loader):
 def evaluate(model, criterion, accuracy, data_loader):
     model.eval()
     losses, accuracies = [], []
-    tqdm_iterator = tqdm(enumerate(data_loader), total=len(data_loader), leave=False)
+    tqdm_iterator = tqdm(enumerate(data_loader), total=len(data_loader), leave=False, disable=True)
     with torch.no_grad():
         for i, data in tqdm_iterator:
             inputs = data['inputs'].cuda()
